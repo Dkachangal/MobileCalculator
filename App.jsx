@@ -1,4 +1,4 @@
-import { View, Text, useColorScheme, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './src/screens/Home'
@@ -14,6 +14,7 @@ function MyTabs() {
       screenOptions={{
         tabBarActiveTintColor: "red",
         tabBarActiveBackgroundColor: "green",
+        headerShown: false
       }}
     >
       <Tab.Screen name="Home" component={Home} />
@@ -22,8 +23,7 @@ function MyTabs() {
   );
 }
 const App = () => {
-  const theme = useColorScheme();
-  const isDarkMode = theme == 'dark';
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
