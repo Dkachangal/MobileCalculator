@@ -1,4 +1,6 @@
 {
+  "name": "MobileCalculator",
+  "displayName": "MobileCalculator",
   "expo": {
     "name": "MobileCalculator",
     "slug": "mobilecalculator",
