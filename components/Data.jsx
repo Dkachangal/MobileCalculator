@@ -11,7 +11,7 @@ const Data = [
     {idx: 9, isNumber: true, number: 8},
     {idx: 10, isNumber: true, number: 9},
     {idx: 11, isNumber: false, operation: '/'},
-    {idx: 12, isNumber: false, operation: '%'},
+    {idx: 12, isNumber: false, operation: '.'},
     {idx: 13, isNumber: false, operation: '*'},
     {idx: 14, isNumber: true, number: 0},
     {idx: 15, isNumber: false, operation: '='},

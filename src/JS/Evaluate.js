@@ -1,4 +1,4 @@
-function Evaluate (str) {
+function Evaluate(str) {
     let ans;
     try {
         ans = eval(str);
@@ -6,6 +6,6 @@ function Evaluate (str) {
         ans = "Invalid"
     }
     return ans;
-} 
+}
 
 export default Evaluate

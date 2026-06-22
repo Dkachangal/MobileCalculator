@@ -1,4 +1,4 @@
-import { View, Text, useColorScheme, StyleSheet, TextInput, Dimensions, Pressable,  } from 'react-native'
+import { View, Text, useColorScheme, StyleSheet, TextInput, Dimensions, Pressable, } from 'react-native'
 import React, { useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ButtonPad from '../../components/ButtonPad'
@@ -11,10 +11,9 @@ const Home = () => {
   const [userInput, setUserInput] = useState('');
   const backSpace = () => {
     const len = userInput.length;
-    if (len >= 1) setUserInput(userInput.slice(0, len-1));
+    if (len >= 1) setUserInput(userInput.slice(0, len - 1));
   }
   const clearScreen = () => setUserInput('');
-
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -23,20 +22,19 @@ const Home = () => {
           multiline
           numberOfLines={3}
         >{userInput}</Text>
-        <View style = {styles.clsAndBackMenueContainer}>
-          <Pressable style = {styles.clearContainer} onPress={backSpace}>
-            <Text style = {styles.clearContainerText}>Del</Text>
+        <View style={styles.clsAndBackMenueContainer}>
+          <Pressable style={styles.clearContainer} onPress={backSpace}>
+            <Text style={styles.clearContainerText}>Del</Text>
           </Pressable>
-          <Pressable style = {styles.clearContainer} onPress={clearScreen}>
-            <Text style = {styles.clearContainerText}>AC</Text>
+          <Pressable style={styles.clearContainer} onPress={clearScreen}>
+            <Text style={styles.clearContainerText}>AC</Text>
           </Pressable>
         </View>
       </View>
 
       <View style={styles.buttonPane}>
-        <ButtonPad userInput = {userInput} setUserInput ={setUserInput} />
+        <ButtonPad userInput={userInput} setUserInput={setUserInput} />
       </View>
-
     </SafeAreaView>
   )
 }
@@ -59,13 +57,12 @@ const createStyles = (isDarkMode) =>
       flexDirection: "row",
       flex: 1,
       justifyContent: "space-between",
-      // backgroundColor: "yellow",
     },
     dispNumber: {
       fontSize: screenHeight * 0.2 * 0.3,
       textAlign: 'right',
       justifyContent: 'center',
-      color: 'white'
+      color: isDarkMode ? '#ffffff': '#1E3B2E'
     },
     clsAndBackMenueContainer: {
       height: screenHeight * 0.05,
@@ -77,8 +74,8 @@ const createStyles = (isDarkMode) =>
       height: screenHeight * 0.05,
       borderWidth: 0.5,
       borderRadius: 100,
-      backgroundColor: isDarkMode ? '#786D58': '#3A4E5A',
-      color: isDarkMode ? '#786D58': '#786D58'
+      backgroundColor: isDarkMode ? '#786D58' : '#3A4E5A',
+      color: isDarkMode ? '#786D58' : '#786D58'
 
 
     },
@@ -86,7 +83,7 @@ const createStyles = (isDarkMode) =>
       fontSize: screenHeight * 0.1 * 0.3,
       textAlign: 'center',
       alignContent: 'center',
-      color: isDarkMode ? 'white': "white",
+      color: isDarkMode ? 'white' : "white",
     },
 
   })
