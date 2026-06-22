@@ -1,19 +1,23 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, useColorScheme } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './src/screens/Home'
 import History from './src/screens/History'
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { isDisabled } from 'react-native/types_generated/Libraries/LogBox/Data/LogBoxData';
 
 function MyTabs() {
   const Tab = createBottomTabNavigator();
+  const theme = useColorScheme();
+  const isDark = theme == 'dark';
 
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "red",
-        tabBarActiveBackgroundColor: "green",
+        tabBarActiveTintColor: "#786D58",
+        tabBarActiveBackgroundColor: isDark ? '#1E3B2E': '#C9DCC8',
+        tabBarInactiveBackgroundColor: isDark ? '#1A1D21': '#FDFDFF',
         headerShown: false
       }}
     >

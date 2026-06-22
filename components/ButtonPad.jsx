@@ -1,33 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import CircleButton from './CircleButton'
 
-function ButtonPad() {
+function ButtonPad({userInput, setUserInput, answer, setAnswer}) {
     return (
         <View style={styles.btnPad}>
             <View style={styles.row} >
-                <CircleButton idx = {0}/>
-                <CircleButton idx = {1}/>
-                <CircleButton idx = {2}/>
-                <CircleButton idx = {3}/>
+                <CircleButton idx = {0} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {1} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {2} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {3} userInput = {userInput} setUserInput = {setUserInput} />
             </View>
             <View style={styles.row} >
-                <CircleButton idx = {4}/>
-                <CircleButton idx = {5}/>
-                <CircleButton idx = {6}/>
-                <CircleButton idx = {7}/>
+                <CircleButton idx = {4} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {5} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {6} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {7} userInput = {userInput} setUserInput = {setUserInput} />
             </View>
             <View style={styles.row} >
-                <CircleButton idx = {8}/>
-                <CircleButton idx = {9}/>
-                <CircleButton idx = {10}/>
-                <CircleButton idx = {11}/>
+                <CircleButton idx = {8} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {9} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {10} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {11} userInput = {userInput} setUserInput = {setUserInput} />
             </View>
             <View style={styles.row} >
-                <CircleButton idx = {12}/>
-                <CircleButton idx = {13}/>
-                <CircleButton idx = {14}/>
-                <CircleButton idx = {15}/>
+                <CircleButton idx = {12} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {13} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {14} userInput = {userInput} setUserInput = {setUserInput} />
+                <CircleButton idx = {15} userInput = {userInput} setUserInput = {setUserInput} />
             </View>
         </View>
     )
