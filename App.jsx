@@ -22,7 +22,7 @@ function MyTabs() {
 
       }}
     >
-      <Tab.Screen name="Home" component={Home}
+      <Tab.Screen name="Calculate" component={Home}
         options={{
           tabBarIcon: (({color, size, focused}) => 
             <Icon 
