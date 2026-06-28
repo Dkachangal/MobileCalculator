@@ -4,6 +4,9 @@ import { useIsFocused } from '@react-navigation/native'
 import HistoryData from '../../components/HistoryData'
 import HistoryRenderCard from '../../components/HistoryRenderCard'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+const dataKey = "CALCHis";
 
 const History = () => {
   const theme = useColorScheme();
@@ -11,14 +14,47 @@ const History = () => {
   const styles = useMemo(() => createStyles(isDarkMode), [isDarkMode]);
   const [localHistory, setLocalHistory] = useState([]);
   const isOnScreen = useIsFocused();
+
+  const clearHis = async () => {
+    try {
+      await AsyncStorage.removeItem(dataKey);
+      console.log("Storage cleared");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const clearHistory = () => {
     HistoryData.length = 0;
     setLocalHistory([]);
+    clearHis();
+  }
+
+  const getData = async () => {
+    try {
+      const histo = await AsyncStorage.getItem(dataKey);
+
+      if (histo !== null) {
+        const parsedHis = JSON.parse(histo);
+        console.log("Successfully fetched from device storage:", parsedHis);
+
+        // Sync back to your global in-memory array so things carry over perfectly
+        HistoryData.length = 0;
+        HistoryData.push(...parsedHis);
+
+        setLocalHistory(parsedHis);
+      } else {
+        setLocalHistory([...HistoryData]);
+      }
+    } catch (e) {
+      console.log("Error inside getData:", e);
+    }
   }
 
   useEffect(() => {
     if (isOnScreen) {
-      setLocalHistory([...HistoryData]);
+      // Clean and safe: Just fetch what's on the disk. No risk of accidental overwriting.
+      getData();
     }
   }, [isOnScreen]);
 
@@ -34,14 +70,14 @@ const History = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {localHistory.length == 0 ?
+      {(!localHistory || localHistory.length === 0) ? 
         (<View style={styles.noHistoryBox}><Text style={styles.noHistoryText}>No History</Text></View>)
         : (
           <>
             <FlatList
               data={localHistory}
               renderItem={addItem}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.id?.toString() || Math.random().toString()}
               contentContainerStyle={{ paddingVertical: 10 }}
               inverted
             />
@@ -50,13 +86,12 @@ const History = () => {
                 <Text style={styles.clrBtnText}>Clear</Text>
               </Pressable>
             </View>
-
           </>
-
         )}
     </SafeAreaView>
   )
 }
+
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const createStyles = (isDarkMode) => StyleSheet.create({
   container: {
@@ -69,7 +104,6 @@ const createStyles = (isDarkMode) => StyleSheet.create({
     justifyContent: 'center',
     marginBottom: '3%',
     marginTop: '3%'
-
   },
   clrBtn: {
     backgroundColor: isDarkMode ? '#8C7F72' : '#4C627A',

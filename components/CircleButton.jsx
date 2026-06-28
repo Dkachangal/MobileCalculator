@@ -3,8 +3,11 @@ import { View, StyleSheet, Text, Pressable, Dimensions, useColorScheme } from 'r
 import Data from './Data'
 import Evaluate from '../src/JS/Evaluate'
 import HistoryData from '../components/HistoryData'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const buttonPressed = ({ idx, userInput, setUserInput }) => {
+const dataKey = "CALCHis";
+
+const buttonPressed = async ({ idx, userInput, setUserInput }) => {
 
     const buttonData = Data.find(item => item.idx === idx)
     const currentInput = buttonData.isNumber ? buttonData.number : buttonData.operation;
@@ -17,6 +20,13 @@ const buttonPressed = ({ idx, userInput, setUserInput }) => {
             expression: userInput,
             result: ans
         });
+        // 3. Persist the updated array to storage immediately
+        try {
+            await AsyncStorage.setItem(dataKey, JSON.stringify(HistoryData));
+            console.log("Calculation saved to storage");
+        } catch (e) {
+            console.log("Error saving calculation:", e);
+        }
     } else {
         setUserInput(String(userInput) + String(currentInput));
         
