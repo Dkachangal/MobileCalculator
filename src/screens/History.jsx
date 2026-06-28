@@ -18,9 +18,7 @@ const History = () => {
   const clearHis = async () => {
     try {
       await AsyncStorage.removeItem(dataKey);
-      console.log("Storage cleared");
     } catch (e) {
-      console.log(e);
     }
   }
 
@@ -36,9 +34,6 @@ const History = () => {
 
       if (histo !== null) {
         const parsedHis = JSON.parse(histo);
-        console.log("Successfully fetched from device storage:", parsedHis);
-
-        // Sync back to your global in-memory array so things carry over perfectly
         HistoryData.length = 0;
         HistoryData.push(...parsedHis);
 
@@ -47,13 +42,13 @@ const History = () => {
         setLocalHistory([...HistoryData]);
       }
     } catch (e) {
-      console.log("Error inside getData:", e);
+
     }
   }
 
   useEffect(() => {
     if (isOnScreen) {
-      // Clean and safe: Just fetch what's on the disk. No risk of accidental overwriting.
+      
       getData();
     }
   }, [isOnScreen]);

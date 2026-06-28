@@ -23,9 +23,10 @@ const buttonPressed = async ({ idx, userInput, setUserInput }) => {
         // 3. Persist the updated array to storage immediately
         try {
             await AsyncStorage.setItem(dataKey, JSON.stringify(HistoryData));
-            console.log("Calculation saved to storage");
+            // console.log("Calculation saved to storage");
         } catch (e) {
-            console.log("Error saving calculation:", e);
+            // console.log("Error saving calculation:", e);
+            
         }
     } else {
         setUserInput(String(userInput) + String(currentInput));
